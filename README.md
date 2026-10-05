@@ -9,7 +9,7 @@ We also include:
 - the agent parsing framework used in the proposed baseline (`models/llm`)
 - a tutorial notebook to visualize labels on the raw videos (`tutorials/visualize_predictions.ipynb`)
 - intermediary result files to reproduce our baseline performance (`baseline`)
-- SALMA architecture, training and inference scripts (TBC `models/salma`)
+- SALMA architecture, training and inference scripts (`models/salma`)
 
 To keep a simple repository, we did not include the code to run SOTA comparisons and the ablation experiments.
 
@@ -21,6 +21,7 @@ conda activate prompting-mammalps
 pip install uv
 uv pip install -e .                   # base: evaluation and visualization
 uv pip install -e ".[smolagents]"     # + parsing agent framework
+uv pip install -e ".[salma]"          # + SALMA training and inference
 ```
 
 ## Dataset
@@ -80,7 +81,7 @@ python evaluation/evaluate.py retrieval \
 ```
 baseline/       Intermediary predictions from SALMA and parsing agents used to derive baseline performance
 models/
-  salma/        TBD
+  salma/        SALMA training and inference (see models/salma/README.md)
   llm/          Parsing agent framework
 evaluation/
   metrics.py    Shared metric implementations (F1)
@@ -88,6 +89,19 @@ evaluation/
 tutorials/
   visualize_predictions.ipynb   Visualize ground truth or model predictions
 ```
+
+## SALMA
+
+SALMA detects, tracks and describes animals in each video. Its per-video prediction JSONs, which use the same schema as `data/annotations/`, are the input of the parsing agent below.
+
+```bash
+uv pip install -e ".[salma]"   # from the repo root
+cd models/salma
+bash scripts/train.sh          # two-stage curriculum training
+bash scripts/inference.sh      # two-view inference -> output/.../multi_view/<video_id>.json
+```
+
+See [models/salma/README.md](models/salma/README.md) for data, weights and options.
 
 ## LLM-based parsing agent
 

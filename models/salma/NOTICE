@@ -1,0 +1,20 @@
+SALMA includes code adapted from the following projects. Their original copyright
+and attribution headers are kept in the corresponding files; files that were
+modified for SALMA say so in their header:
+
+- VideoMAE            https://github.com/MCG-NJU/VideoMAE
+- InternVideo         https://github.com/OpenGVLab/InternVideo
+- TIM                 https://github.com/JacobChalk/TIM
+- BEiT (unilm)        https://github.com/microsoft/unilm
+- timm                https://github.com/huggingface/pytorch-image-models
+- DeiT                https://github.com/facebookresearch/deit
+- DINO                https://github.com/facebookresearch/dino
+- DETR                https://github.com/facebookresearch/detr
+                      (salma/losses/HungarianMatcher.py, salma/losses/SetCriterion.py,
+                       salma/utils/box_ops.py, salma/utils/misc.py,
+                       salma/model/salma/TransformerDecoder.py)
+- AVION               https://github.com/zhaoyue-zephyrus/AVION
+                      (salma/datasets/video_reader.py)
+
+Each of these projects is distributed under its own license; please refer to the
+respective repositories.
